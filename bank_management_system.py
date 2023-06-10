@@ -37,13 +37,13 @@ class User:
     def deposit_amount(self, amount):
         self.balance += amount
         bank.balance += amount
-        self._adding_transaction("Deposited: ", amount)
+        self._adding_transaction("Deposit", amount)
 
     def withdraw_amount(self, amount):
         if self.balance >= amount:
             self.balance -= amount
             bank.balance -= amount
-            self._adding_transaction("Withdrawal: ", -amount)
+            self._adding_transaction("Withdraw", -amount)
             return True
         return False
 
@@ -51,8 +51,8 @@ class User:
         if self.balance >= amount:
             self.balance -= amount
             receiver.balance += amount
-            self._adding_transaction("Transfer: ", -amount)
-            receiver._adding_transaction("Transfer: ", amount)
+            self._adding_transaction("Transfer", -amount)
+            receiver._adding_transaction("Transfer", amount)
             return True
         return False
 
