@@ -15,9 +15,9 @@ class Bank:
     def disable_loan_feature(self):
         self.loan_feature = False
 
-    def get_total_loan_taken(self):
-        total_loan_amount = sum(user.loan_amount for user in self.users)
-        return total_loan_amount
+    def total_loan_takes(self):
+        total_loan = sum(user.loan_amount for user in self.users)
+        return total_loan
 
     def is_bankrupt(self):
         return self.balance < 0
@@ -91,8 +91,8 @@ class Admin:
     def check_total_balance(self):
         return bank.balance
 
-    def get_total_loan_taken(self):
-        return bank.get_total_loan_taken()
+    def total_loan_takes(self):
+        return bank.total_loan_takes()
 
     def enable_loan_feature(self):
         bank.loan_feature = True
@@ -101,6 +101,7 @@ class Admin:
         bank.loan_feature = False
 
 
+print("_WELCOME TO BANK MANAGEMENT SYSTEM_")
 bank = Bank()
 admin = Admin('admin@gmail.com', '1234')
 
@@ -112,6 +113,7 @@ user_1 = bank.users[0]
 user_2 = bank.users[1]
 
 
+print("\n________________USER________________\n")
 deposit_amount = int(input("ENTER THE DEPOSIT AMOUNT : "))
 user_1.deposit_amount(deposit_amount)
 
@@ -126,7 +128,7 @@ if withdraw:
     print("WITHDRAW SUCCESSFULL!")
 else:
     print("BANK IS BANKRUPT")
-
+    exit()
 
 balance = user_1.check_available_balance()
 print("AFTER WITHDRAW ACCOUNT BALANCE : ", balance)
@@ -156,15 +158,15 @@ else:
 balance = user_1.check_available_balance()
 print("AFTER TAKING LOAN ACCOUNT BALANCE : ", balance)
 
-
-user_1.check_transaction_history()
-
-
+print("\n________________ADMIN________________\n")
 total_balance = admin.check_total_balance()
 print("TOTAL BANK BALANCE :", total_balance)
 
 
-total_loan_amount = admin.get_total_loan_taken()
+total_loan_amount = admin.total_loan_takes()
 print("TOTAL LOAN AMOUNT :", total_loan_amount)
 
 admin.disable_loan_feature()
+
+print("\n________________TRANSACTION HISTORY________________\n")
+user_1.check_transaction_history()
