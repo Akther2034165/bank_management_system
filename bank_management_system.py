@@ -60,7 +60,8 @@ class User:
         if bank.loan_feature:
             loan_limit = self.balance * 2
             loan_amount = int(input("ENTER THE LOAN AMOUNT : "))
-            if self.loan_amount == 0 and self.loan_amount + loan_amount <= loan_limit:
+            total_amount = self.loan_amount + loan_amount
+            if self.loan_amount == 0 and total_amount <= loan_limit:
                 self.balance += loan_amount
                 self.loan_amount += loan_amount
                 bank.balance += loan_amount
