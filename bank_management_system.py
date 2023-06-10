@@ -51,8 +51,8 @@ class User:
         if self.balance >= amount:
             self.balance -= amount
             receiver.balance += amount
-            self._adding_transaction("Transfer", -amount)
-            receiver._adding_transaction("Transfer", amount)
+            self._adding_transaction("Transfer: ", -amount)
+            receiver._adding_transaction("Transfer: ", amount)
             return True
         return False
 
@@ -126,7 +126,7 @@ print("AFTER DEPOSIT ACCOUNT BALANCE : ", balance)
 withdraw_amount = int(input("ENTER THE WITHDRAW AMOUNT : "))
 withdraw = user_1.withdraw_amount(withdraw_amount)
 if withdraw:
-    print("WITHDRAW SUCCESSFULL!")
+    print(f"WITHDRAW {withdraw_amount} TAKA SUCCESSFULL!")
 else:
     print("BANK IS BANKRUPT")
     exit()
